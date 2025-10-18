@@ -4,6 +4,12 @@
 // Hardcoded for production deployment
 const API_BASE_URL = 'https://simple-to-do-list-34ul.onrender.com';
 
+// Debug: Log the API base URL to verify it's correct
+console.log('API_BASE_URL is set to:', API_BASE_URL);
+if (API_BASE_URL.includes('YOUR_DEPLOYED_BACKEND_URL')) {
+  console.error('ERROR: API_BASE_URL still contains placeholder!');
+}
+
 // DOM Elements
 const taskForm = document.getElementById('task-form');
 const taskTitleInput = document.getElementById('task-title');
