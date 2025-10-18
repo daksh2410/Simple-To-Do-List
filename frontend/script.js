@@ -1,4 +1,4 @@
-// API base URL - Force production URL
+// API base URL - Force production URL for deployment
 const API_BASE_URL = 'https://simple-to-do-list-34ul.onrender.com';
 
 // DOM Elements
