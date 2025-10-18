@@ -1,6 +1,7 @@
 // API base URL
 // For local development, use localhost
 // For production, use the deployed backend URL
+// Hardcoded for production deployment
 const API_BASE_URL = 'https://simple-to-do-list-34ul.onrender.com';
 
 // DOM Elements
