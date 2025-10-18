@@ -1,7 +1,7 @@
 // API base URL
 // For local development, use localhost
 // For production, replace with your deployed backend URL
-const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'YOUR_DEPLOYED_BACKEND_URL';
+const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://simple-to-do-list-34ul.onrender.com';
 
 // DOM Elements
 const taskForm = document.getElementById('task-form');
