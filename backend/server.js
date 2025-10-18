@@ -7,7 +7,11 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3002', 'https://famous-banoffee-b79bea.netlify.app'],
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 app.use(express.json());
 
 // File path for tasks storage
