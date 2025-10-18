@@ -1,14 +1,5 @@
-// API base URL
-// For local development, use localhost
-// For production, use the deployed backend URL
-// Hardcoded for production deployment
+// API base URL - Force production URL
 const API_BASE_URL = 'https://simple-to-do-list-34ul.onrender.com';
-
-// Debug: Log the API base URL to verify it's correct
-console.log('API_BASE_URL is set to:', API_BASE_URL);
-if (API_BASE_URL.includes('YOUR_DEPLOYED_BACKEND_URL')) {
-  console.error('ERROR: API_BASE_URL still contains placeholder!');
-}
 
 // DOM Elements
 const taskForm = document.getElementById('task-form');
@@ -40,10 +31,7 @@ themeToggle.addEventListener('click', toggleTheme);
 // Load tasks from backend
 async function loadTasks() {
     try {
-        const url = `${API_BASE_URL}/tasks`;
-        console.log('Fetching tasks from:', url);
-        const response = await fetch(url);
-        console.log('Response status:', response.status);
+        const response = await fetch(`${API_BASE_URL}/tasks`);
         if (!response.ok) throw new Error(`Failed to load tasks. Status: ${response.status}`);
         
         tasks = await response.json();
@@ -66,9 +54,7 @@ async function handleFormSubmit(e) {
     }
     
     try {
-        const url = `${API_BASE_URL}/tasks`;
-        console.log('Creating task at:', url);
-        const response = await fetch(url, {
+        const response = await fetch(`${API_BASE_URL}/tasks`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -93,9 +79,7 @@ async function handleFormSubmit(e) {
 // Toggle task completion status
 async function toggleComplete(id, completed) {
     try {
-        const url = `${API_BASE_URL}/tasks/${id}`;
-        console.log('Updating task at:', url);
-        const response = await fetch(url, {
+        const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -126,9 +110,7 @@ async function deleteTask(id) {
     if (!confirm('Are you sure you want to delete this task?')) return;
     
     try {
-        const url = `${API_BASE_URL}/tasks/${id}`;
-        console.log('Deleting task at:', url);
-        const response = await fetch(url, {
+        const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
             method: 'DELETE'
         });
         
