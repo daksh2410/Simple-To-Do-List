@@ -19,6 +19,8 @@ let currentFilter = 'all';
 
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('Window hostname:', window.location.hostname);
+    console.log('API_BASE_URL:', API_BASE_URL);
     loadTasks();
     initTheme();
 });
@@ -31,8 +33,9 @@ themeToggle.addEventListener('click', toggleTheme);
 // Load tasks from backend
 async function loadTasks() {
     try {
-        console.log('Fetching tasks from:', `${API_BASE_URL}/tasks`);
-        const response = await fetch(`${API_BASE_URL}/tasks`);
+        const url = `${API_BASE_URL}/tasks`;
+        console.log('Fetching tasks from:', url);
+        const response = await fetch(url);
         console.log('Response status:', response.status);
         if (!response.ok) throw new Error(`Failed to load tasks. Status: ${response.status}`);
         
@@ -56,7 +59,9 @@ async function handleFormSubmit(e) {
     }
     
     try {
-        const response = await fetch(`${API_BASE_URL}/tasks`, {
+        const url = `${API_BASE_URL}/tasks`;
+        console.log('Creating task at:', url);
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,7 +86,9 @@ async function handleFormSubmit(e) {
 // Toggle task completion status
 async function toggleComplete(id, completed) {
     try {
-        const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
+        const url = `${API_BASE_URL}/tasks/${id}`;
+        console.log('Updating task at:', url);
+        const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -112,7 +119,9 @@ async function deleteTask(id) {
     if (!confirm('Are you sure you want to delete this task?')) return;
     
     try {
-        const response = await fetch(`${API_BASE_URL}/tasks/${id}`, {
+        const url = `${API_BASE_URL}/tasks/${id}`;
+        console.log('Deleting task at:', url);
+        const response = await fetch(url, {
             method: 'DELETE'
         });
         
