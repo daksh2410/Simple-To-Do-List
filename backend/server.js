@@ -13,6 +13,9 @@ app.use(express.json());
 // File path for tasks storage
 const TASKS_FILE = path.join(__dirname, 'tasks.json');
 
+// Handle preflight requests
+app.options('*', cors());
+
 // Helper function to read tasks from file
 async function readTasks() {
   try {
