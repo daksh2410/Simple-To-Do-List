@@ -1,7 +1,7 @@
 // API base URL
 // For local development, use localhost
-// For production, replace with your deployed backend URL
-const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3001' : 'https://simple-to-do-list-34ul.onrender.com';
+// For production, use the deployed backend URL
+const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? 'http://localhost:3001' : 'https://simple-to-do-list-34ul.onrender.com';
 
 // DOM Elements
 const taskForm = document.getElementById('task-form');
@@ -31,14 +31,16 @@ themeToggle.addEventListener('click', toggleTheme);
 // Load tasks from backend
 async function loadTasks() {
     try {
+        console.log('Fetching tasks from:', `${API_BASE_URL}/tasks`);
         const response = await fetch(`${API_BASE_URL}/tasks`);
-        if (!response.ok) throw new Error('Failed to load tasks');
+        console.log('Response status:', response.status);
+        if (!response.ok) throw new Error(`Failed to load tasks. Status: ${response.status}`);
         
         tasks = await response.json();
         renderTasks();
     } catch (error) {
         console.error('Error loading tasks:', error);
-        showError('Failed to load tasks. Please make sure the backend is running.');
+        showError(`Failed to load tasks. Please make sure the backend is running. Error: ${error.message}`);
     }
 }
 
