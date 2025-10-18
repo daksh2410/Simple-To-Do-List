@@ -19,9 +19,28 @@ let currentFilter = 'all';
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Window hostname:', window.location.hostname);
     console.log('API_BASE_URL:', API_BASE_URL);
+    
+    // Test the API connection
+    testAPIConnection();
+    
     loadTasks();
     initTheme();
 });
+
+// Test function to debug API connection
+async function testAPIConnection() {
+    try {
+        console.log('Testing direct API connection to:', `${API_BASE_URL}/tasks`);
+        const response = await fetch(`${API_BASE_URL}/tasks`);
+        console.log('Direct API test response:', response.status, response.ok);
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Direct API test data:', data);
+        }
+    } catch (error) {
+        console.error('Direct API test failed:', error);
+    }
+}
 taskForm.addEventListener('submit', handleFormSubmit);
 showAllBtn.addEventListener('click', () => setFilter('all'));
 showActiveBtn.addEventListener('click', () => setFilter('active'));
@@ -31,10 +50,13 @@ themeToggle.addEventListener('click', toggleTheme);
 // Load tasks from backend
 async function loadTasks() {
     try {
+        console.log('Loading tasks from:', `${API_BASE_URL}/tasks`);
         const response = await fetch(`${API_BASE_URL}/tasks`);
+        console.log('Tasks response:', response.status, response.ok);
         if (!response.ok) throw new Error(`Failed to load tasks. Status: ${response.status}`);
         
         tasks = await response.json();
+        console.log('Tasks loaded:', tasks);
         renderTasks();
     } catch (error) {
         console.error('Error loading tasks:', error);
