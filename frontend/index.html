@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern To-Do App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <h1>Task Manager</h1>
+                <p class="subtitle">Simple and elegant task management</p>
+                <button id="theme-toggle" class="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+        
+        <form id="task-form">
+            <div class="form-group">
+                <input type="text" id="task-title" placeholder="Enter command..." required>
+                <button type="submit"><i class="fas fa-plus"></i> Add Task</button>
+            </div>
+        </form>
+        
+        <div class="filters">
+            <button id="show-all" class="active"><i class="fas fa-list"></i> All</button>
+            <button id="show-active"><i class="fas fa-clock"></i> Active</button>
+            <button id="show-completed"><i class="fas fa-check"></i> Completed</button>
+        </div>
+        
+        <ul id="task-list"></ul>
+        
+        <div id="message-container" class="message hidden"></div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
